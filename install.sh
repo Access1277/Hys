@@ -3,7 +3,6 @@ if [ ! "${user}" = "root" ]; then
 echo -e "\e[91mPlease run as root user!\e[0m" # Red text
 exit 1
 fi
-}
 T_BOLD=$(tput bold)
 T_GREEN=$(tput setaf 2)
 T_YELLOW=$(tput setaf 3)
