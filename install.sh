@@ -59,7 +59,7 @@ echo '\''echo -e "\t\e[1;33mServer Time : $TIME"'\'' >>~/.bashrc
 echo '\''echo "" '\'' >>~/.bashrc
 echo '\''echo -e "\t\e\033[94mSend us mail: vpn@voltssh.xyz \033[0m"'\'' >>~/.bashrc
 echo '\''echo -e ""'\'' >>~/.bashrc
-
+}
 figlet -k Voltssh-X | awk '\''{gsub(/./,"\033[3"int(rand()*5+1)"m&\033[0m")}1'\'' && figlet -k Hysteria | awk '\''{gsub(/./,"\033[3"int(rand()*5+1)"m&\033[0m")}1'\''
 echo -e "   Hysteria Server Configuration"
 echo -e "*******************************************\e[0m"
@@ -817,3 +817,4 @@ echo "${T_GREEN}Voltssh-X Hysteria Server Installation completed!${T_RESET}"
 echo "${T_YELLOW}Type: "volt" to access the menu${T_RESET}"
 }
 main
+
