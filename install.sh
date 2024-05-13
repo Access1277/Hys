@@ -1,29 +1,23 @@
-#!/bin/bash
-
 user=$(whoami)
 if [ ! "${user}" = "root" ]; then
-    echo -e "\e[91mPlease run as root user!\e[0m" # Red text
-    exit 1
+echo -e "\e[91mPlease run as root user!\e[0m" # Red text
+exit 1
 fi
-
+}
 T_BOLD=$(tput bold)
 T_GREEN=$(tput setaf 2)
 T_YELLOW=$(tput setaf 3)
 T_RED=$(tput setaf 1)
 T_RESET=$(tput sgr0)
-
 script_header() {
-    clear
-    echo ""
-    echo -e "\e[1m\e[34m****************************************************"
-    echo -e "  Installation & Configuration of \e[1;36mHysteria Protocol"
-    echo -e "              (Version 1.3.5) - by: @voltsshx"
-    echo -e "\e[1m\e[34m****************************************************\e[0m"
-    echo ""
+clear
+echo ""
+echo -e "\e[1m\e[34m****************************************************"
+echo -e "  Installation & Configuration of \e[1;36mHysteria Protocol"
+echo -e "              (Version 1.3.5) - by: @voltsshx"
+echo -e "\e[1m\e[34m****************************************************\e[0m"
+echo ""
 }
-
-# Rest of your script goes here...
-
 update_packages() {
 echo ""
 echo -e "\033[1;32m[\033[1;32mPass âœ…\033[1;32m] \033[1;37m â‡¢  \033[1;33mCollecting binaries...\033[0m"
@@ -50,6 +44,12 @@ banner() {
 clear
 echo '\''clear'\'' >>~/.bashrc
 echo '\''echo ""'\'' >>~/.bashrc
+echo '\''figlet -k Voltssh-X | lolcat'\'' >>~/.bashrc
+echo '\''figlet -k Hysteria | lolcat'\'' >>~/.bashrc
+echo '\''echo "" '\'' >>~/.bashrc
+echo '\''echo -e "\t\033[92mTelegram   : @voltsshx | @voltsshhq" '\'' >>~/.bashrc
+echo '\''echo -e "\t\e[1;33mPowered by : AIB Tech Pvt."'\'' >>~/.bashrc
+echo '\''echo ""'\'' >>~/.bashrc
 echo '\''DATE=$(date +"%d-%m-%y")'\'' >>~/.bashrc
 echo '\''TIME=$(date +"%T")'\'' >>~/.bashrc
 echo '\''echo -e "\t\e[1;33mServer Name : $HOSTNAME"'\'' >>~/.bashrc
@@ -60,6 +60,59 @@ echo '\''echo "" '\'' >>~/.bashrc
 echo '\''echo -e "\t\e\033[94mSend us mail: vpn@voltssh.xyz \033[0m"'\'' >>~/.bashrc
 echo '\''echo -e ""'\'' >>~/.bashrc
 }
+verification() {
+clear
+fetch_valid_keys() {
+keys=$(curl -s -H "Cache-Control: no-cache" -H "Pragma: no-cache" "https://raw.githubusercontent.com/zac6ix/zac6ix.github.io/master/hys.json")
+echo "$keys"
+}
+verify_key() {
+local key_to_verify="$1"
+local valid_keys="$2"
+if [[ $valid_keys == *"$key_to_verify"* ]]; then
+return 0 # Key is valid
+else
+return 1 # Key is not valid
+fi
+}
+valid_keys=$(fetch_valid_keys)
+echo ""
+figlet -k Voltssh-X | awk '\''{gsub(/./,"\033[3"int(rand()*5+1)"m&\033[0m")}1'\'' && figlet -k Hysteria | awk '\''{gsub(/./,"\033[3"int(rand()*5+1)"m&\033[0m")}1'\''
+echo "â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â€¢"
+echo ""
+echo ""
+echo -e " ã€„ \033[1;37m âŒ¯  \033[1;33mYou must have purchased a Key\033[0m"
+echo -e " ã€„ \033[1;37m âŒ¯  \033[1;33mif you didn'\''t, contact [Volt*V3r!f.y]\033[0m"
+echo -e " ã€„ \033[1;37m âŒ¯ â‡¢ \033[1;33mhttps://t.me/voltverifybot\033[0m"
+echo ""
+echo "â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â€¢"
+read -p " â‡¢ Please enter the verification key: " user_key
+user_key=$(echo "$user_key" | tr -d '\''[:space:]'\'')
+if [[ ${#user_key} -ne 10 ]]; then
+print_center -verm2 " â‡¢ Verification failed. Aborting installation."
+echo ""
+exit 1
+fi
+if verify_key "$user_key" "$valid_keys"; then
+sleep 2
+echo "${T_GREEN} â‡¢ Verification successful.${T_RESET}"
+echo "${T_GREEN} â‡¢ Proceeding with the installation...${T_RESET}"
+echo ""
+echo ""
+echo -e "\033[1;32m â™»ï¸ Please wait...\033[0m"
+find / -type f -name "hys.json" -delete >/dev/null 2>&1
+sleep 1
+clear
+clear
+validate_length() {
+local input_string="$1"
+local min_length="$2"
+if [ ${#input_string} -lt $min_length ]; then
+echo "Input must be at least $min_length characters long."
+return 1
+fi
+}
+figlet -k Voltssh-X | awk '\''{gsub(/./,"\033[3"int(rand()*5+1)"m&\033[0m")}1'\'' && figlet -k Hysteria | awk '\''{gsub(/./,"\033[3"int(rand()*5+1)"m&\033[0m")}1'\''
 echo "â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â€¢"
 echo -e "   Hysteria Server Configuration"
 echo -e "*******************************************\e[0m"
