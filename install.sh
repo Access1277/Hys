@@ -756,7 +756,6 @@ echo -e "'\''client'\'' directory at \e[1;32m'\''/etc/hysteria/'\''\e[0m"
 echo -e "*******************************************"
 echo ""
 echo -e "\n* Check service running or not running, type: '\''\e[1;33msystemctl status hysteria\e[0m'\'' to see logs"
-echo -e "\n* To uninstall, type: '\''\e[1;91msystemctl stop hysteria; systemctl disable hysteria; rm -rf /etc/hysteria\e[0m'\'' , without quotes"
 echo -e "\nEnjoy using Hysteria"
 echo ""
 }
