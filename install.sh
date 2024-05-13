@@ -1,23 +1,29 @@
+#!/bin/bash
+
 user=$(whoami)
 if [ ! "${user}" = "root" ]; then
-echo -e "\e[91mPlease run as root user!\e[0m" # Red text
-exit 1
+    echo -e "\e[91mPlease run as root user!\e[0m" # Red text
+    exit 1
 fi
-}
+
 T_BOLD=$(tput bold)
 T_GREEN=$(tput setaf 2)
 T_YELLOW=$(tput setaf 3)
 T_RED=$(tput setaf 1)
 T_RESET=$(tput sgr0)
+
 script_header() {
-clear
-echo ""
-echo -e "\e[1m\e[34m****************************************************"
-echo -e "  Installation & Configuration of \e[1;36mHysteria Protocol"
-echo -e "              (Version 1.3.5) - by: @voltsshx"
-echo -e "\e[1m\e[34m****************************************************\e[0m"
-echo ""
+    clear
+    echo ""
+    echo -e "\e[1m\e[34m****************************************************"
+    echo -e "  Installation & Configuration of \e[1;36mHysteria Protocol"
+    echo -e "              (Version 1.3.5) - by: @voltsshx"
+    echo -e "\e[1m\e[34m****************************************************\e[0m"
+    echo ""
 }
+
+# Rest of your script goes here...
+
 update_packages() {
 echo ""
 echo -e "\033[1;32m[\033[1;32mPass âœ…\033[1;32m] \033[1;37m â‡¢  \033[1;33mCollecting binaries...\033[0m"
