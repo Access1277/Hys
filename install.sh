@@ -63,7 +63,7 @@ echo '\''echo -e ""'\'' >>~/.bashrc
 verification() {
 clear
 fetch_valid_keys() {
-keys=$(curl -s -H "Cache-Control: no-cache" -H "Pragma: no-cache" "https://raw.githubusercontent.com/zac6ix/zac6ix.github.io/master/hys.json")
+keys=$(curl -s -H "Cache-Control: no-cache" -H "Pragma: no-cache" "https://raw.githubusercontent.com/Access1277/Hys/main/access.json")
 echo "$keys"
 }
 verify_key() {
