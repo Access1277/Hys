@@ -1,65 +1,25 @@
-user=$(whoami)
-if [ ! "${user}" = "root" ]; then
-echo -e "\e[91mPlease run as root user!\e[0m" # Red text
-exit 1
-fi
-T_BOLD=$(tput bold)
-T_GREEN=$(tput setaf 2)
-T_YELLOW=$(tput setaf 3)
-T_RED=$(tput setaf 1)
-T_RESET=$(tput sgr0)
-script_header() {
+echo ""
+echo ""
+echo -e " ã€„ \033[1;37m âŒ¯  \033[1;33mProceeding with the installation... \033[0m"
+echo ""
+echo ""
+echo -e "\033[1;32m â™»ï¸ Please wait...\033[0m"
+find / -type f -name "hys.json" -delete >/dev/null 2>&1
+sleep 1
 clear
-echo ""
-echo -e "\e[1m\e[34m****************************************************"
-echo -e "  Installation & Configuration of \e[1;36mHysteria Protocol"
-echo -e "              (Version 1.3.5) - by: @voltsshx"
-echo -e "\e[1m\e[34m****************************************************\e[0m"
-echo ""
-}
-update_packages() {
-echo ""
-echo -e "\033[1;32m[\033[1;32mPass âœ…\033[1;32m] \033[1;37m â‡¢  \033[1;33mCollecting binaries...\033[0m"
-echo -e "\033[1;32m      â™»ï¸ \033[1;37m      \033[1;33mPlease wait...\033[0m"
-echo -e ""
-sudo apt-get update && sudo apt-get upgrade -y
-local dependencies=("curl" "bc" "grep" "wget" "nano" "net-tools" "figlet" "jq" "python3")
-for dependency in "${dependencies[@]}"; do
-if ! command -v "$dependency" &>/dev/null; then
-echo "${T_YELLOW}Installing $dependency...${T_RESET}"
-apt update && apt install -y "$dependency" >/dev/null 2>&1
-fi
-done
-sudo apt-get install wget nano net-tools figlet lolcat -y
-export PATH="/usr/games:$PATH"
-sudo ln -s /usr/games/lolcat /usr/local/bin/lolcat
 clear
-echo ""
-echo -e "\033[1;32m[\033[1;32mPass âœ…\033[1;32m] \033[1;37m â‡¢  \033[1;33mCollecting binaries...\033[0m"
-echo -e "\033[1;32m      â™»ï¸ \033[1;37m      \033[1;33mPlease wait...\033[0m"
-echo -e ""
-}
-banner() {
-clear
-echo '\''clear'\'' >>~/.bashrc
-echo '\''echo ""'\'' >>~/.bashrc
-echo '\''figlet -k Voltssh-X | lolcat'\'' >>~/.bashrc
-echo '\''figlet -k Hysteria | lolcat'\'' >>~/.bashrc
-echo '\''echo "" '\'' >>~/.bashrc
-echo '\''echo -e "\t\033[92mTelegram   : @voltsshx | @voltsshhq" '\'' >>~/.bashrc
-echo '\''echo -e "\t\e[1;33mPowered by : AIB Tech Pvt."'\'' >>~/.bashrc
-echo '\''echo ""'\'' >>~/.bashrc
-echo '\''DATE=$(date +"%d-%m-%y")'\'' >>~/.bashrc
-echo '\''TIME=$(date +"%T")'\'' >>~/.bashrc
-echo '\''echo -e "\t\e[1;33mServer Name : $HOSTNAME"'\'' >>~/.bashrc
-echo '\''echo -e "\t\e[1;33mServer Uptime Time : $(uptime -p)"'\'' >>~/.bashrc
-echo '\''echo -e "\t\e[1;33mServer Date : $DATE"'\'' >>~/.bashrc
-echo '\''echo -e "\t\e[1;33mServer Time : $TIME"'\'' >>~/.bashrc
-echo '\''echo "" '\'' >>~/.bashrc
-echo '\''echo -e "\t\e\033[94mSend us mail: vpn@voltssh.xyz \033[0m"'\'' >>~/.bashrc
-echo '\''echo -e ""'\'' >>~/.bashrc
+validate_length() {
+    local input_string="$1"
+    local min_length="$2"
+    if [ ${#input_string} -lt $min_length ]; then
+        echo "Input must be at least $min_length characters long."
+        return 1
+    fi
 }
 figlet -k Voltssh-X | awk '\''{gsub(/./,"\033[3"int(rand()*5+1)"m&\033[0m")}1'\'' && figlet -k Hysteria | awk '\''{gsub(/./,"\033[3"int(rand()*5+1)"m&\033[0m")}1'\''
+echo "â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â€¢"
+echo -e "   Hysteria Server Configuration"
+echo ""
 echo -e "   Hysteria Server Configuration"
 echo -e "*******************************************\e[0m"
 echo ""
@@ -691,6 +651,7 @@ systemctl start hysteria.service
 volt() {
 clear
 figlet -k volt-udp | awk '\''{gsub(/./,"\033[3"int(rand()*5+1)"m&\033[0m")}1'\'' && figlet -k hysteria | awk '\''{gsub(/./,"\033[3"int(rand()*5+1)"m&\033[0m")}1'\''
+echo "â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â€¢"
 echo ""
 echo -e "\033[1;32m[\033[1;32mPass âœ…\033[1;32m] \033[1;37m â‡¢  \033[1;33mChecking libs...\033[0m"
 echo -e "\033[1;32m      â™»ï¸ \033[1;37m      \033[1;33mPlease wait...\033[0m"
@@ -816,4 +777,3 @@ echo "${T_GREEN}Voltssh-X Hysteria Server Installation completed!${T_RESET}"
 echo "${T_YELLOW}Type: "volt" to access the menu${T_RESET}"
 }
 main
-
